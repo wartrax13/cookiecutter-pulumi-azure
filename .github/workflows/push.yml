@@ -110,5 +110,5 @@ jobs:
         uses: azure/webapps-deploy@v3
         id: deploy-to-webapp
         with:
-          app-name: 'django-azure-pulumi-123'
+          app-name: 'cookiecutter-pulumi-django578a1e04' # App Name
           slot-name: 'Production'
