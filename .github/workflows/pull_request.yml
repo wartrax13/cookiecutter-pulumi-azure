@@ -39,7 +39,7 @@ jobs:
         uses: pulumi/actions@v4
         with:
           command: preview
-          stack-name: ${{ env.STACK_PULUMI_NAME }}
+          stack-name: ${{ vars.STACK_PULUMI_NAME }}
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
