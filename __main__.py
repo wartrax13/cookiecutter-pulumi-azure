@@ -1,7 +1,7 @@
 import pulumi
+import os
 from pulumi_azure_native import network, cache, web, dbforpostgresql, managedidentity, resources
 from pulumi import Output
-from django.core.management.utils import get_random_secret_key
 
 # az resource list --resource-group django-azure-pulumi-123_group --output table
 # az resource show --ids "/subscriptions/SUBSCRIPTION_ID/resourceGroups/RESOURCE_GROUP" output table
@@ -11,7 +11,7 @@ from django.core.management.utils import get_random_secret_key
 resource_group_name = "cookiecutter-pulumi-django_group"
 location_brazilsouth = "brazilsouth"
 location_global = "global"
-secret_key = get_random_secret_key()
+secret_key = os.getenv('SECRET_KEY')
 
 # Criando o Resource Group
 resource_group = resources.ResourceGroup(
