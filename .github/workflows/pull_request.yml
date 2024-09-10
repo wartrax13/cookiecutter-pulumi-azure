@@ -5,9 +5,9 @@
 name: Build and deploy Python app to Azure Web App - django-azure-pulumi-123
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    branches-ignore:
+        - '*-alpha'
   workflow_dispatch:
 
 jobs:
@@ -23,15 +23,7 @@ jobs:
       - name: Set up Python version
         uses: actions/setup-python@v5
         with:
-          python-version: '3.10'
-      
-      - name: Cache pip
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          python-version: '3.9'
 
       - name: Create and start virtual environment
         run: |
@@ -47,7 +39,7 @@ jobs:
         uses: pulumi/actions@v4
         with:
           command: preview
-          stack-name: ${{ secrets.STACK_PULUMI_NAME }}
+          stack-name: ${{ vars.STACK_PULUMI_NAME }}
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
           ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
