@@ -5,9 +5,9 @@
 name: Build and deploy Python app to Azure Web App - django-azure-pulumi-123
 
 on:
-  push:
-    branches:
-      - main
+  pull_request:
+    branches-ignore:
+        - '*-alpha'
   workflow_dispatch:
 
 jobs:
